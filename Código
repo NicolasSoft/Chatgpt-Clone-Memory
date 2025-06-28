@@ -1,0 +1,57 @@
+#.env - 2° Pasta
+OPENAI_API_KEY=sua-chave-aqui
+
+#requeriments.txt
+openai
+langchain
+gradio
+python-dotenv
+
+#app.py - Pasta Developer
+import os
+import gradio as gr
+from dotenv import load_dotenv
+from langchain.chat_models import ChatOpenAI
+from langchain.chains import ConversationChain
+from langchain.memory import ConversationBufferMemory
+
+# Carregar chave da OpenAI
+def carregar_api_key():
+    load_dotenv()
+    return os.getenv("OPENAI_API_KEY")
+
+# Inicializar o modelo de linguagem com memória
+def inicializar_chat():
+    api_key = carregar_api_key()
+    if not api_key:
+        raise ValueError("OPENAI_API_KEY não encontrada no arquivo .env")
+
+    llm = ChatOpenAI(openai_api_key=api_key, temperature=0.7)
+    memory = ConversationBufferMemory()
+    conversation = ConversationChain(
+        llm = llm,
+        memory = memory,
+        verbose = True
+    )
+    return conversation
+
+# Função de resposta ao chatbot
+def chat_with_bot(user_input, history):
+    global conversation
+    resposta = conversation.predict(input=user_input)
+    history.append((user_input, resposta))
+    return "", history
+
+# Inicializar conversa
+conversation = inicializar_chat()
+
+# Interface Gradio com histórico
+with gr.Blocks() as demo:
+    gr.Markdown("# 🤖 Clone do ChatGPT com Memória de Conversa")
+    chatbot = gr.Chatbot()
+    msg = gr.Textbox(placeholder="Digite sua mensagem...")
+    state = gr.State([])
+
+    msg.submit(chat_with_bot, [msg, state], [msg, chatbot, state])
+
+demo.launch()
