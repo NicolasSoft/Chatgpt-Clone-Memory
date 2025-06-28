@@ -1,26 +1,23 @@
-Chatgpt-Clone-Memory
-Clone simplificado do ChatGPT com memória de conversa usando Python, LangChain, OpenAI e Gradio.
-
-ChatGPT Clone com Memória de Conversa
+# 🤖 ChatGPT Clone com Memória de Conversa
 
 Projeto desenvolvido em Python que simula um chatbot estilo ChatGPT, com **memória de contexto**, utilizando as tecnologias **LangChain**, **OpenAI API** e **Gradio**.
 
-💡 Funcionalidades
+## 💡 Funcionalidades
 
-- Interface de chat responsiva com Gradio;
-- Memória de conversa (contexto dinâmico);
-- Integração com modelos LLM da OpenAI (ex: GPT-3.5, GPT-4);
-- Arquitetura simples e extensível para futuros aprimoramentos.
+- Interface de chat responsiva com Gradio
+- Memória de conversa (contexto dinâmico)
+- Integração com modelos LLM da OpenAI (ex: GPT-3.5, GPT-4)
+- Arquitetura simples e extensível para futuros aprimoramentos
 
-🛠️ Tecnologias utilizadas
+## 🛠️ Tecnologias utilizadas
 
-- Python;
-- LangChain;
-- OpenAI API;
-- Gradio;
-- Dotenv (para variáveis de ambiente).
+- Python
+- LangChain
+- OpenAI API
+- Gradio
+- Dotenv (para variáveis de ambiente)
 
-🚀 Como rodar localmente
+## 🚀 Como rodar localmente
 
 ```bash
 # Clone o repositório
@@ -39,3 +36,4 @@ echo \"OPENAI_API_KEY=sua-chave-aqui\" > .env
 
 # Inicie o app
 python app.py
+
